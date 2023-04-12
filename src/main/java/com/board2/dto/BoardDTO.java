@@ -1,5 +1,7 @@
 package com.board2.dto;
 
+import com.board2.entity.BaseEntity;
+import com.board2.entity.BoardEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -21,5 +23,17 @@ public class BoardDTO {
     private LocalDateTime localCreatedTime;
     private LocalDateTime localupdateTime;
 
+    public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setId(boardEntity.getId());
+        boardDTO.setBoardWriter(boardEntity.getBoardWriter());
+        boardDTO.setBoardPass(boardEntity.getBoardPass());
+        boardDTO.setBoardTitle(boardEntity.getBoardTitle());
+        boardDTO.setBoardContents(boardEntity.getBoardContents());
+        boardDTO.setBoardHist(boardEntity.getBoardHits());
+        boardDTO.setLocalCreatedTime(boardEntity.getCreatedTime());
+        boardDTO.setLocalupdateTime(boardEntity.getUpdatedTime());
+        return boardDTO;
+    }
 
 }

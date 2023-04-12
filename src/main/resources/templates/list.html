@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>writer</th>
+        <th>date</th>
+        <th>hits</th>
+    </tr>
+    <tr th:each="board: ${boardList}">
+        <td th: text="${board.id}"></td>
+        <td><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a></td>
+        <td th: text="${board.boardWriter}"></td>
+        <td th: text="*{#temporals.format(board.boardCreatedTime, 'yyyy-mm-dd HH:mm:ss'}"></td>
+        <td th: text="${board.boardHits}"></td>
+    </tr>
+</table>
+</body>
+<!--controller에서 boardList이름으로 객체를 담고,th:each="board(변수로): ${boardList}가 반복 대상이 된다. -->
+<!--반복변수(th:each="board)로 접근을 해서 각각의 필드이름으로(board.id) 접근을 하면 담긴 값을 꺼내서 사용가능하다 -->
+<!--<a th:href="@{|/board/${board.id}|}(요청하는 주소)" th:text="${board.boardTitle}"></a> = 제목에 링크가 달린 상태-->
+<!--controller에 요청할 때 동일한 제목이 있을 때 제대로 된 요청을 할 수 없기때문에 아이디 값으로 넘겨준다-->
