@@ -72,7 +72,7 @@ public class BoardService {
 
     public Page<BoardDTO> paging(Pageable pageable) {
         int page= pageable.getPageNumber() - 1;//page 위치에 있는 값은 0부터 시작하기 때문에 -1을 해야 요청한 값과 일치함.
-        int pageLimit = 3;
+        int pageLimit = 3; //한페이지에 보여줄 글 갯수
         Page<BoardEntity> boardEntities =
                 boardRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "id")));
         /*findAll에서 전달되는 값= page(몇 페이지를 보고 싶은지),pageLimit(한페이지에 보여줄 글 갯수)
